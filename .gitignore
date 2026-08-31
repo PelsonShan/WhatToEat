@@ -1,0 +1,4 @@
+.superpowers/
+.playwright-cli/
+output/
+node_modules/
