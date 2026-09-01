@@ -70,7 +70,7 @@ page {
   display: flex;
   background: #fff7e0;
   border: 2rpx solid #d9a441;
-  border-radius: 8rpx;
+  border-radius: 10rpx;
   overflow: hidden;
   margin: 8rpx 0 20rpx;
 }
@@ -85,7 +85,7 @@ page {
 
 .mode-item.active {
   background: #9f1d16;
-  color: #f2d9a4;
+  color: #f8ecd0;
 }
 
 .combo-wrap {
@@ -101,20 +101,22 @@ page {
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 14rpx;
+  gap: 16rpx;
 }
 
 .chip {
-  border: 2rpx solid #b3261e;
+  flex: 1;
+  text-align: center;
+  border: 2rpx solid #9f1d16;
   color: #9f1d16;
-  border-radius: 999rpx;
-  padding: 10rpx 26rpx;
-  font-size: 26rpx;
+  border-radius: 8rpx;
+  padding: 14rpx 0;
+  font-size: 28rpx;
 }
 
 .chip-active {
-  background: #b3261e;
-  color: #ffe9b3;
+  background: #9f1d16;
+  color: #f8ecd0;
 }
 
 .wheel-box {
@@ -189,8 +191,8 @@ page {
 
 .result-card {
   background: #fff7e0;
-  border: 2rpx solid #d9a441;
-  border-radius: 8rpx;
+  border: 2rpx dashed #b3261e;
+  border-radius: 10rpx;
   padding: 26rpx;
   margin-top: 26rpx;
 }
@@ -218,22 +220,23 @@ page {
   display: inline-flex;
   align-items: center;
   gap: 8rpx;
-  border: 2rpx solid #b3261e;
-  border-radius: 6rpx;
-  padding: 8rpx 16rpx;
-  background: #f8ecd0;
+  border: 2rpx solid #d8b06a;
+  border-radius: 28rpx;
+  padding: 8rpx 20rpx;
+  background: #fff7e0;
 }
 
 .cat {
-  color: #b3261e;
-  font-size: 22rpx;
-  border-right: 2rpx solid #d9a441;
-  padding-right: 8rpx;
+  background: #9f1d16;
+  color: #f8ecd0;
+  font-size: 18rpx;
+  border-radius: 20rpx;
+  padding: 2rpx 12rpx;
 }
 
 .dish-name {
   color: #5a241d;
-  font-size: 28rpx;
+  font-size: 26rpx;
 }
 
 .notice {
