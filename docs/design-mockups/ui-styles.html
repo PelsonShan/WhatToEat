@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ui-styles</title>
+  <style>
+
+    /*
+     * BRAINSTORM COMPANION FRAME TEMPLATE
+     *
+     * This template provides a consistent frame with:
+     * - OS-aware light/dark theming
+     * - Fixed header and selection indicator bar
+     * - Scrollable main content area
+     * - CSS helpers for common UI patterns
+     *
+     * Content is injected via placeholder comment in #claude-content.
+     */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+
+    /* ===== THEME VARIABLES ===== */
+    :root {
+      --bg-primary: #f5f5f7;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #e5e5e7;
+      --border: #d1d1d6;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --text-tertiary: #aeaeb2;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --success: #34c759;
+      --warning: #ff9f0a;
+      --error: #ff3b30;
+      --selected-bg: #e8f4fd;
+      --selected-border: #0071e3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #1d1d1f;
+        --bg-secondary: #2d2d2f;
+        --bg-tertiary: #3d3d3f;
+        --border: #424245;
+        --text-primary: #f5f5f7;
+        --text-secondary: #86868b;
+        --text-tertiary: #636366;
+        --accent: #0a84ff;
+        --accent-hover: #409cff;
+        --selected-bg: rgba(10, 132, 255, 0.15);
+        --selected-border: #0a84ff;
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* ===== FRAME STRUCTURE ===== */
+    .header {
+      background: var(--bg-secondary);
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .header h1 { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+    .header .status { font-size: 0.7rem; color: var(--success); display: flex; align-items: center; gap: 0.4rem; }
+    .header .status::before { content: ''; width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+
+    .main { flex: 1; overflow-y: auto; }
+    #claude-content { padding: 2rem; min-height: 100%; }
+
+    .indicator-bar {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 0.5rem 1.5rem;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .indicator-bar span {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .indicator-bar .selected-text {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .subtitle { color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .section { margin-bottom: 2rem; }
+    .label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+
+    /* ===== OPTIONS (for A/B/C choices) ===== */
+    .options { display: flex; flex-direction: column; gap: 0.75rem; }
+    .option {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .option:hover { border-color: var(--accent); }
+    .option.selected { background: var(--selected-bg); border-color: var(--selected-border); }
+    .option .letter {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      width: 1.75rem; height: 1.75rem;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .option.selected .letter { background: var(--accent); color: white; }
+    .option .content { flex: 1; }
+    .option .content h3 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .option .content p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+
+    /* ===== CARDS (for showing designs/mockups) ===== */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .card.selected { border-color: var(--selected-border); border-width: 2px; }
+    .card-image { background: var(--bg-tertiary); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; }
+    .card-body { padding: 1rem; }
+    .card-body h3 { margin-bottom: 0.25rem; }
+    .card-body p { color: var(--text-secondary); font-size: 0.85rem; }
+
+    /* ===== MOCKUP CONTAINER ===== */
+    .mockup {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .mockup-header {
+      background: var(--bg-tertiary);
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .mockup-body { padding: 1.5rem; }
+
+    /* ===== SPLIT VIEW (side-by-side comparison) ===== */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 700px) { .split { grid-template-columns: 1fr; } }
+
+    /* ===== PROS/CONS ===== */
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .pros, .cons { background: var(--bg-secondary); border-radius: 8px; padding: 1rem; }
+    .pros h4 { color: var(--success); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .cons h4 { color: var(--error); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .pros ul, .cons ul { margin-left: 1.25rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .pros li, .cons li { margin-bottom: 0.25rem; }
+
+    /* ===== PLACEHOLDER (for mockup areas) ===== */
+    .placeholder {
+      background: var(--bg-tertiary);
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-tertiary);
+    }
+
+    /* ===== INLINE MOCKUP ELEMENTS ===== */
+    .mock-nav { background: var(--accent); color: white; padding: 0.75rem 1rem; display: flex; gap: 1.5rem; font-size: 0.9rem; }
+    .mock-sidebar { background: var(--bg-tertiary); padding: 1rem; min-width: 180px; }
+    .mock-content { padding: 1.5rem; flex: 1; }
+    .mock-button { background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; }
+    .mock-input { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem; width: 100%; }
+  
+html, body { overflow: auto; }
+#claude-content { padding: 1.5rem; min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div id="claude-content">
+<h2>UI 风格对比</h2>
+<p class="subtitle">点击卡片可以选择你更喜欢的风格，下面也会展示在同一个推荐页上对比</p>
+
+<div class="cards">
+  <div class="card" data-choice="orange" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="width:190px;margin:0 auto;border:1px solid #f1d9cc;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 6px 18px rgba(255,112,67,.15);font-family:-apple-system,'PingFang SC',sans-serif">
+        <div style="background:#ff7043;color:#fff;padding:8px 10px;font-size:12px;font-weight:600">吃什么</div>
+        <div style="padding:10px">
+          <div style="font-size:12px;font-weight:700;color:#1f2937">今天想吃什么？</div>
+          <div style="display:flex;gap:4px;margin-top:8px">
+            <span style="flex:1;text-align:center;background:#ff7043;color:#fff;border-radius:10px;padding:4px 0;font-size:8px;font-weight:600">一菜一汤</span>
+            <span style="flex:1;text-align:center;background:#fff4ed;color:#b45309;border-radius:10px;padding:4px 0;font-size:8px">两菜一汤</span>
+            <span style="flex:1;text-align:center;background:#fff4ed;color:#b45309;border-radius:10px;padding:4px 0;font-size:8px">自由单点</span>
+          </div>
+          <div style="width:56px;height:56px;border-radius:50%;background:conic-gradient(#ffca28 0 25%,#ff8a65 25% 50%,#ff7043 50% 75%,#ffb347 75% 100%);margin:10px auto;position:relative;box-shadow:0 3px 8px rgba(255,112,67,.35)">
+            <div style="position:absolute;inset:12px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#b45309;font-weight:600">开始</div>
+          </div>
+          <div style="border:1px solid #fde5d7;background:#fffaf5;border-radius:8px;padding:7px;font-size:9px;color:#b45309">红烧肉 + 番茄蛋汤</div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <div style="flex:1;text-align:center;border:1px solid #ff7043;color:#ff7043;border-radius:12px;padding:5px 0;font-size:8px">换一批</div>
+            <div style="flex:1;text-align:center;background:#ff7043;color:#fff;border-radius:12px;padding:5px 0;font-size:8px">确认</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>暖橙治愈</h3>
+      <p>现有的版本：珊瑚橙 + 奶油白，温暖亲切，像家常菜的锅气。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="matcha" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="width:190px;margin:0 auto;border:1px solid #dceadc;border-radius:16px;overflow:hidden;background:#fbfdf8;box-shadow:0 6px 18px rgba(93,153,97,.15);font-family:-apple-system,'PingFang SC',sans-serif">
+        <div style="background:#5d9961;color:#fff;padding:8px 10px;font-size:12px;font-weight:600">吃什么</div>
+        <div style="padding:10px">
+          <div style="font-size:12px;font-weight:700;color:#2f3d2f">今天想吃什么？</div>
+          <div style="display:flex;gap:4px;margin-top:8px">
+            <span style="flex:1;text-align:center;background:#5d9961;color:#fff;border-radius:10px;padding:4px 0;font-size:8px;font-weight:600">一菜一汤</span>
+            <span style="flex:1;text-align:center;background:#edf5ed;color:#3d6b41;border-radius:10px;padding:4px 0;font-size:8px">两菜一汤</span>
+            <span style="flex:1;text-align:center;background:#edf5ed;color:#3d6b41;border-radius:10px;padding:4px 0;font-size:8px">自由单点</span>
+          </div>
+          <div style="width:56px;height:56px;border-radius:50%;background:conic-gradient(#ffd166 0 25%,#f4a261 25% 50%,#5d9961 50% 75%,#8ecb8f 75% 100%);margin:10px auto;position:relative;box-shadow:0 3px 8px rgba(93,153,97,.30)">
+            <div style="position:absolute;inset:12px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#3d6b41;font-weight:600">开始</div>
+          </div>
+          <div style="border:1px solid #dceadc;background:#f4faf4;border-radius:8px;padding:7px;font-size:9px;color:#3d6b41">清蒸鲈鱼 + 冬瓜汤</div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <div style="flex:1;text-align:center;border:1px solid #5d9961;color:#5d9961;border-radius:12px;padding:5px 0;font-size:8px">换一批</div>
+            <div style="flex:1;text-align:center;background:#5d9961;color:#fff;border-radius:12px;padding:5px 0;font-size:8px">确认</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>抹茶清新</h3>
+      <p>抹茶绿 + 米白 + 柠檬黄点缀，清爽干净，像轻食餐厅的菜单。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="night" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="width:190px;margin:0 auto;border:1px solid #2a2622;border-radius:16px;overflow:hidden;background:#1f1c19;box-shadow:0 6px 18px rgba(0,0,0,.35);font-family:-apple-system,'PingFang SC',sans-serif">
+        <div style="background:#26211c;color:#f4c95d;padding:8px 10px;font-size:12px;font-weight:600;border-bottom:1px solid #3a332b">吃什么</div>
+        <div style="padding:10px">
+          <div style="font-size:12px;font-weight:700;color:#f7e8c9">今天想吃什么？</div>
+          <div style="display:flex;gap:4px;margin-top:8px">
+            <span style="flex:1;text-align:center;background:#f4c95d;color:#1f1c19;border-radius:10px;padding:4px 0;font-size:8px;font-weight:600">一菜一汤</span>
+            <span style="flex:1;text-align:center;background:#332c25;color:#d8a94c;border-radius:10px;padding:4px 0;font-size:8px">两菜一汤</span>
+            <span style="flex:1;text-align:center;background:#332c25;color:#d8a94c;border-radius:10px;padding:4px 0;font-size:8px">自由单点</span>
+          </div>
+          <div style="width:56px;height:56px;border-radius:50%;background:conic-gradient(#f4c95d 0 25%,#d97757 25% 50%,#8a6d3b 50% 75%,#e2a76f 75% 100%);margin:10px auto;position:relative;box-shadow:0 3px 8px rgba(244,201,93,.30)">
+            <div style="position:absolute;inset:12px;background:#1f1c19;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#f4c95d;font-weight:600">开始</div>
+          </div>
+          <div style="border:1px solid #4a3f31;background:#2b251f;border-radius:8px;padding:7px;font-size:9px;color:#e8c98a">红烧肉 + 番茄蛋汤</div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <div style="flex:1;text-align:center;border:1px solid #f4c95d;color:#f4c95d;border-radius:12px;padding:5px 0;font-size:8px">换一批</div>
+            <div style="flex:1;text-align:center;background:#f4c95d;color:#1f1c19;border-radius:12px;padding:5px 0;font-size:8px">确认</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>深夜食堂</h3>
+      <p>暖棕黑底 + 琥珀金，像深夜小馆的灯，适合晚餐和“出去吃”的氛围。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="retro" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="width:190px;margin:0 auto;border:2px solid #b3261e;border-radius:16px;overflow:hidden;background:#fffdf4;box-shadow:0 6px 18px rgba(179,38,30,.18);font-family:-apple-system,'PingFang SC',sans-serif">
+        <div style="background:#b3261e;color:#ffe9b3;padding:8px 10px;font-size:12px;font-weight:700;letter-spacing:1px">吃什么</div>
+        <div style="padding:10px">
+          <div style="font-size:12px;font-weight:800;color:#5a241d">今日好胃口</div>
+          <div style="display:flex;gap:4px;margin-top:8px">
+            <span style="flex:1;text-align:center;background:#b3261e;color:#ffe9b3;border-radius:2px;padding:4px 0;font-size:8px;font-weight:600">一菜一汤</span>
+            <span style="flex:1;text-align:center;background:#f7ead2;color:#8a3328;border-radius:2px;padding:4px 0;font-size:8px">两菜一汤</span>
+            <span style="flex:1;text-align:center;background:#f7ead2;color:#8a3328;border-radius:2px;padding:4px 0;font-size:8px">自由单点</span>
+          </div>
+          <div style="width:56px;height:56px;border-radius:50%;background:conic-gradient(#e8a33d 0 25%,#b3261e 25% 50%,#d97757 50% 75%,#f2c14e 75% 100%);margin:10px auto;position:relative;box-shadow:0 3px 8px rgba(179,38,30,.30);border:2px solid #b3261e">
+            <div style="position:absolute;inset:11px;background:#fffdf4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#b3261e;font-weight:800">开</div>
+          </div>
+          <div style="border:2px dashed #b3261e;background:#fff7e0;border-radius:2px;padding:7px;font-size:9px;color:#8a3328;font-weight:600">红烧肉 · 番茄蛋汤</div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <div style="flex:1;text-align:center;border:2px solid #b3261e;color:#b3261e;border-radius:2px;padding:4px 0;font-size:8px;font-weight:700">换一批</div>
+            <div style="flex:1;text-align:center;background:#b3261e;color:#ffe9b3;border-radius:2px;padding:4px 0;font-size:8px;font-weight:700">确认</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>复古餐牌</h3>
+      <p>中国红 + 米黄 + 描金，像老字号饭馆的菜单和招牌，个性鲜明。</p>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px;text-align:center;color:#6b7280;font-size:13px">在浏览器里点击卡片即可选择；也可以直接在聊天里告诉我看中的风格编号</div>
+
+    </div>
+  </div>
+  <script>
+
+window.toggleSelect = function (el) {
+  var container = el.closest('.options') || el.closest('.cards');
+  var multi = container && container.dataset.multiselect !== undefined;
+  if (container && !multi) {
+    container.querySelectorAll('.option, .card').forEach(function (o) { o.classList.remove('selected'); });
+  }
+  if (multi) { el.classList.toggle('selected'); } else { el.classList.add('selected'); }
+  window.selectedChoice = el.dataset.choice;
+};
+
+  </script>
+</body>
+</html>
