@@ -1,4 +1,11 @@
 <view class="page discover-page">
+  <view class="header" style="padding-top:{{statusBarHeight}}px">
+    <view class="title-row">
+      <text class="page-title">觅食</text>
+    </view>
+    <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+  </view>
+
   <view class="section-title">附近好味</view>
   <view class="nearby-card">
     <view class="nearby-tip">寻味周边馆子，一键收藏进市井</view>

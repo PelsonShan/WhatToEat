@@ -1,11 +1,15 @@
 <view class="page index-page">
-  <view class="header">
+  <view class="header" style="padding-top:{{statusBarHeight}}px">
     <image class="cloud cloud-left" src="/assets/cloud-cream.svg" mode="aspectFit" />
     <view class="title-row">
       <text class="page-title">今日签</text>
-      <seal text="今日卦" size="14" />
     </view>
     <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+  </view>
+
+  <view class="greeting-row">
+    <text class="greeting">今日好胃口</text>
+    <seal text="今日签" size="13" />
   </view>
 
   <view class="mode-bar">

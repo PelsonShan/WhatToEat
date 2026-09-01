@@ -1,4 +1,11 @@
 <view class="page foodlist-page">
+  <view class="header" style="padding-top:{{statusBarHeight}}px">
+    <view class="title-row">
+      <text class="page-title">食单</text>
+    </view>
+    <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+  </view>
+
   <view class="search-bar">
     <input
       class="search-input"

@@ -3,7 +3,39 @@ page {
 }
 
 .discover-page {
-  padding-top: 20rpx;
+  padding: 0 20rpx 180rpx;
+}
+
+.header {
+  position: relative;
+  min-height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #9f1d16;
+  border-bottom: 4rpx solid #d9a441;
+  margin: 0 -20rpx 24rpx;
+}
+
+.title-row {
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #f8ecd0;
+  letter-spacing: 8rpx;
+}
+
+.cloud {
+  position: absolute;
+  top: 16rpx;
+  right: 6rpx;
+  width: 230rpx;
+  height: 130rpx;
+  opacity: 0.5;
 }
 
 .nearby-card {

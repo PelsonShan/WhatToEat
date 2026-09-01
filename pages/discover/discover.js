@@ -10,11 +10,19 @@ Page({
     hotFiltered: [],
     novelty: [],
     nearby: [],
-    nearbyLoading: false
+    nearbyLoading: false,
+    statusBarHeight: 20
   },
 
   onLoad() {
+    const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    this.setData({ statusBarHeight: info.statusBarHeight || 20 });
+    if (this.getTabBar) this.getTabBar().setData({ selected: 2 });
     this.loadHot();
+  },
+
+  onShow() {
+    if (this.getTabBar) this.getTabBar().setData({ selected: 2 });
   },
 
   loadHot() {

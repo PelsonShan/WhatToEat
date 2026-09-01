@@ -20,10 +20,14 @@ Page({
     showHot: false,
     editingId: '',
     categories: ['主菜', '汤', '主食'],
-    form: {}
+    form: {},
+    statusBarHeight: 20
   },
 
   onShow() {
+    const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    this.setData({ statusBarHeight: info.statusBarHeight || 20 });
+    if (this.getTabBar) this.getTabBar().setData({ selected: 1 });
     this.load();
   },
 

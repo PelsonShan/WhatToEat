@@ -17,10 +17,14 @@ Page({
   data: {
     currentUser: null,
     users: [],
-    history: []
+    history: [],
+    statusBarHeight: 20
   },
 
   onShow() {
+    const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    this.setData({ statusBarHeight: info.statusBarHeight || 20 });
+    if (this.getTabBar) this.getTabBar().setData({ selected: 3 });
     this.load();
   },
 

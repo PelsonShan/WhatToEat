@@ -3,7 +3,39 @@ page {
 }
 
 .foodlist-page {
-  padding-top: 20rpx;
+  padding-bottom: 220rpx;
+}
+
+.header {
+  position: relative;
+  min-height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #9f1d16;
+  border-bottom: 4rpx solid #d9a441;
+  margin-bottom: 20rpx;
+}
+
+.title-row {
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #f8ecd0;
+  letter-spacing: 8rpx;
+}
+
+.cloud {
+  position: absolute;
+  top: 16rpx;
+  right: 6rpx;
+  width: 230rpx;
+  height: 130rpx;
+  opacity: 0.5;
 }
 
 .search-bar {
@@ -115,7 +147,7 @@ page {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 120rpx;
   display: flex;
   gap: 20rpx;
   padding: 20rpx 28rpx 34rpx;

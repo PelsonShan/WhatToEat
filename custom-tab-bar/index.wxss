@@ -1,0 +1,33 @@
+.tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: #f8ecd0;
+  border-top: 2rpx solid #9f1d16;
+  padding: 12rpx 10rpx 20rpx;
+  z-index: 100;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  color: #6b4a35;
+}
+
+.tab-item.active {
+  color: #9f1d16;
+}
+
+.tab-icon {
+  display: block;
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+.tab-text {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+}

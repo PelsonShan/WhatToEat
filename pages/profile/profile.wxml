@@ -1,4 +1,11 @@
 <view class="page profile-page">
+  <view class="header" style="padding-top:{{statusBarHeight}}px">
+    <view class="title-row">
+      <text class="page-title">膳记</text>
+    </view>
+    <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+  </view>
+
   <view class="profile-card">
     <image wx:if="{{currentUser.avatar}}" class="avatar" src="{{currentUser.avatar}}" mode="aspectFill" />
     <view wx:else class="avatar avatar-empty">{{currentUser.familyRole || '家'}}</view>

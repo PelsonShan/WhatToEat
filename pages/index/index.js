@@ -15,10 +15,14 @@ Page({
     selectedCandidate: null,
     pickSource: 'home',
     confirmed: false,
-    locationGranted: false
+    locationGranted: false,
+    statusBarHeight: 20
   },
 
   onLoad() {
+    const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    this.setData({ statusBarHeight: info.statusBarHeight || 20 });
+    if (this.getTabBar) this.getTabBar().setData({ selected: 0 });
     const now = new Date();
     const allowed = isJackpotAllowed(now);
     const rate = jackpotRate(now);
@@ -26,6 +30,10 @@ Page({
       jackpotAllowed: allowed,
       jackpotRateText: allowed ? `${Math.round(rate * 100)}%` : ''
     });
+  },
+
+  onShow() {
+    if (this.getTabBar) this.getTabBar().setData({ selected: 0 });
   },
 
   onModeTap(e) {

@@ -3,15 +3,17 @@ page {
 }
 
 .index-page {
-  padding-top: 16rpx;
+  padding-bottom: 180rpx;
 }
 
 .header {
   position: relative;
-  height: 150rpx;
+  min-height: 150rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #9f1d16;
+  border-bottom: 4rpx solid #d9a441;
 }
 
 .cloud {
@@ -40,8 +42,21 @@ page {
 .page-title {
   font-size: 52rpx;
   font-weight: 700;
-  color: #9f1d16;
+  color: #f8ecd0;
   letter-spacing: 8rpx;
+}
+
+.greeting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 28rpx 0;
+}
+
+.greeting {
+  font-size: 42rpx;
+  font-weight: 800;
+  color: #5a241d;
 }
 
 .mode-bar {
