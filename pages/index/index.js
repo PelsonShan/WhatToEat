@@ -2,6 +2,11 @@ const pickService = require('../../services/pick.js');
 const { isJackpotAllowed, jackpotRate } = require('../../utils/time.js');
 const { getLocation } = require('../../services/lbs.js');
 
+function getShichen(hour) {
+  const names = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+  return `${names[Math.floor(((hour + 1) % 24) / 2)]}时`;
+}
+
 Page({
   data: {
     mode: 'home',
@@ -16,12 +21,16 @@ Page({
     pickSource: 'home',
     confirmed: false,
     locationGranted: false,
-    statusBarHeight: 20
+    statusBarHeight: 20,
+    shichen: '巳时'
   },
 
   onLoad() {
     const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
-    this.setData({ statusBarHeight: info.statusBarHeight || 20 });
+    this.setData({
+      statusBarHeight: info.statusBarHeight || 20,
+      shichen: getShichen(new Date().getHours())
+    });
     if (this.getTabBar) this.getTabBar().setData({ selected: 0 });
     const now = new Date();
     const allowed = isJackpotAllowed(now);

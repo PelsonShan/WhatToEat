@@ -1,7 +1,7 @@
 <view class="page index-page">
   <view class="header" style="padding-top:{{statusBarHeight}}px">
     <view class="header-status">
-      <text>巳时</text>
+      <text>{{shichen}}</text>
       <text>宜 开饭</text>
     </view>
     <view class="header-main">
