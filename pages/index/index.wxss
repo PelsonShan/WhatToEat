@@ -111,15 +111,15 @@ page {
 }
 
 .wheel-box {
-  width: 260rpx;
-  height: 260rpx;
+  width: 300rpx;
+  height: 300rpx;
   margin: 34rpx auto 0;
   position: relative;
 }
 
 .wheel {
-  width: 220rpx;
-  height: 220rpx;
+  width: 260rpx;
+  height: 260rpx;
   border-radius: 50%;
   border: 8rpx solid #d9a441;
   background: conic-gradient(#b3261e 0 25%, #f2c14e 25% 50%, #d9a441 50% 75%, #b3261e 75% 100%);
@@ -132,7 +132,7 @@ page {
 
 .wheel-center {
   position: absolute;
-  inset: 36rpx;
+  inset: 42rpx;
   background: #f8ecd0;
   border: 4rpx solid #9f1d16;
   border-radius: 50%;
@@ -144,11 +144,11 @@ page {
 }
 
 .wheel-label {
-  font-size: 20rpx;
+  font-size: 22rpx;
 }
 
 .wheel-char {
-  font-size: 36rpx;
+  font-size: 42rpx;
   font-weight: 800;
 }
 
@@ -158,7 +158,7 @@ page {
   left: 50%;
   transform: translateX(-50%);
   color: #d9a441;
-  font-size: 30rpx;
+  font-size: 34rpx;
   z-index: 2;
 }
 
