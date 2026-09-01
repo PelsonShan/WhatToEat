@@ -1,6 +1,6 @@
 App({
   globalData: {
-    cloudEnv: 'your-env-id'
+    cloudEnv: 'cloud1-d5gw1tslx7c0e25ab'
   },
 
   onLaunch() {
