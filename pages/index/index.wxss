@@ -14,8 +14,8 @@ page {
 .header-status {
   display: flex;
   justify-content: space-between;
-  padding: 10rpx 28rpx 6rpx;
-  font-size: 20rpx;
+  padding: 18rpx 32rpx 10rpx;
+  font-size: 28rpx;
   color: #f2d9a4;
 }
 
@@ -24,7 +24,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22rpx 28rpx;
+  padding: 30rpx 32rpx;
   border-top: 2rpx solid #f2c14e;
   border-bottom: 2rpx solid #f2c14e;
 }
@@ -40,12 +40,12 @@ page {
 }
 
 .header-divider {
-  height: 8rpx;
+  height: 10rpx;
   background: repeating-linear-gradient(90deg, #d9a441 0 14rpx, #9f1d16 14rpx 18rpx);
 }
 
 .page-title {
-  font-size: 40rpx;
+  font-size: 46rpx;
   font-weight: 700;
   color: #f8ecd0;
   letter-spacing: 8rpx;

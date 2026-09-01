@@ -6,7 +6,7 @@
   display: flex;
   background: #f8ecd0;
   border-top: 2rpx solid #9f1d16;
-  padding: 12rpx 10rpx 20rpx;
+  padding: 22rpx 12rpx 30rpx;
   z-index: 100;
 }
 
@@ -22,12 +22,12 @@
 
 .tab-icon {
   display: block;
-  font-size: 32rpx;
+  font-size: 44rpx;
   line-height: 1;
 }
 
 .tab-text {
   display: block;
-  margin-top: 6rpx;
-  font-size: 22rpx;
+  margin-top: 10rpx;
+  font-size: 28rpx;
 }
