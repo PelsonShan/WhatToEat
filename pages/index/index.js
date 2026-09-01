@@ -15,7 +15,6 @@ Page({
     selectedCandidate: null,
     pickSource: 'home',
     confirmed: false,
-    wheelAngle: 0,
     locationGranted: false
   },
 
@@ -36,8 +35,7 @@ Page({
       result: null,
       resultType: '',
       selectedCandidate: null,
-      confirmed: false,
-      wheelAngle: 0
+      confirmed: false
     });
   },
 
@@ -58,7 +56,6 @@ Page({
     pickService.callRandomPick({ mode: 'home', combo: this.data.combo })
       .then((res) => {
         if (!res) return;
-        this.setData({ wheelAngle: this.data.wheelAngle + 720 + Math.random() * 360 });
         this.setData({
           result: res,
           resultType: res.jackpot ? 'jackpot' : 'dishes',
@@ -84,8 +81,7 @@ Page({
         this.setData({
           result: res,
           resultType: isJackpot ? 'jackpot' : (res.dishes ? 'dishes' : ''),
-          pickSource: isJackpot ? 'jackpot' : 'home',
-          wheelAngle: this.data.wheelAngle + 720 + Math.random() * 360
+          pickSource: isJackpot ? 'jackpot' : 'home'
         });
       })
       .finally(() => this.setData({ loading: false }));

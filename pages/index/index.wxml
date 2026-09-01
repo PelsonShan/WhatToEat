@@ -27,19 +27,10 @@
       </view>
     </view>
 
-    <view class="wheel-box">
-      <view class="wheel" style="transform: rotate({{wheelAngle}}deg);">
-        <view class="wheel-sector s1">主菜</view>
-        <view class="wheel-sector s2">汤</view>
-        <view class="wheel-sector s3">主菜</view>
-        <view class="wheel-sector s4">汤</view>
-        <view class="wheel-sector s5">主食</view>
-        <view class="wheel-sector s6">主菜</view>
-      </view>
-      <view class="wheel-pointer"></view>
+    <view class="draw-hero">
+      <button class="btn-primary draw-hero-btn" bindtap="startPick" loading="{{loading}}">抽一签</button>
+      <view class="draw-hero-sub">一签定今日 · 灶下好味</view>
     </view>
-
-    <button class="btn-primary draw-btn" bindtap="startPick" loading="{{loading}}">抽一签</button>
 
     <view wx:if="{{jackpotAllowed}}" class="jackpot-entry" bindtap="startJackpot">
       <seal text="大奖" size="12" />
