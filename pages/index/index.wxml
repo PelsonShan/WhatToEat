@@ -1,14 +1,9 @@
 <view class="page index-page">
   <view class="header" style="padding-top:{{statusBarHeight}}px">
-    <view class="header-status">
-      <text>{{shichen}}</text>
-      <text>宜 开饭</text>
-    </view>
-    <view class="header-main">
+    <view class="title-row">
       <text class="page-title">今日签</text>
-      <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
     </view>
-    <view class="header-divider"></view>
+    <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
   </view>
 
   <view class="greeting-row">
