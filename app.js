@@ -12,5 +12,15 @@ App({
       env: this.globalData.cloudEnv,
       traceUser: true
     });
+    this.bootstrapCloud();
+  },
+
+  bootstrapCloud() {
+    if (wx.getStorageSync('seedDone')) return;
+    wx.cloud.callFunction({ name: 'seedHotDishes' })
+      .then(() => wx.setStorageSync('seedDone', true))
+      .catch(() => {
+        // 云函数尚未部署或网络异常时静默，下次启动重试
+      });
   }
 });
