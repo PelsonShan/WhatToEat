@@ -18,6 +18,6 @@ exports.main = async () => {
     familyRole: '',
     createdAt: Date.now()
   };
-  await col.add({ data: user });
-  return { openid: OPENID, user };
+  const added = await col.add({ data: user });
+  return { openid: OPENID, user: { ...user, _id: added._id } };
 };

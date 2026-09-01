@@ -80,10 +80,11 @@ Page({
     pickService.callRandomPick({ mode: 'jackpot' })
       .then((res) => {
         if (!res) return;
+        const isJackpot = !!res.jackpot;
         this.setData({
           result: res,
-          resultType: 'jackpot',
-          pickSource: 'jackpot',
+          resultType: isJackpot ? 'jackpot' : (res.dishes ? 'dishes' : ''),
+          pickSource: isJackpot ? 'jackpot' : 'home',
           wheelAngle: this.data.wheelAngle + 720 + Math.random() * 360
         });
       })
@@ -129,14 +130,28 @@ Page({
   },
 
   confirm() {
+    if (this.data.confirmed) {
+      wx.showToast({ title: '已确认过啦', icon: 'none' });
+      return;
+    }
+    let promise;
     if (this.data.resultType === 'jackpot') {
-      pickService.confirmJackpot(this.data.result.restaurant);
+      const restaurant = this.data.result && this.data.result.restaurant;
+      promise = restaurant
+        ? pickService.confirmJackpot(restaurant)
+        : Promise.resolve(false);
     } else if (this.data.resultType === 'outside') {
       const candidate = this.data.selectedCandidate;
-      if (candidate) pickService.confirmOutside(candidate);
+      promise = candidate ? pickService.confirmOutside(candidate) : Promise.resolve(false);
     } else if (this.data.result && this.data.result.dishes) {
-      pickService.confirmHome(this.data.result.dishes, this.data.combo);
+      promise = pickService.confirmHome(this.data.result.dishes, this.data.combo);
+    } else {
+      promise = Promise.resolve(false);
     }
+    this.setData({ confirmed: true });
+    promise.then((ok) => {
+      if (!ok) this.setData({ confirmed: false });
+    });
   },
 
   openNavigation() {

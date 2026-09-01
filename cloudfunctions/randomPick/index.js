@@ -23,18 +23,33 @@ async function loadCollection(name) {
   return res.data || [];
 }
 
+async function loadHistory() {
+  const res = await db.collection('pick_history').orderBy('createdAt', 'desc').limit(100).get();
+  return res.data || [];
+}
+
+function withDistance(restaurant, location) {
+  if (!location || !restaurant || !restaurant.location) return restaurant;
+  const distance = haversine(location, restaurant.location);
+  const distanceText = distance >= 1000 ? `${(distance / 1000).toFixed(1)} 公里` : `${distance}m`;
+  return { ...restaurant, distance, distanceText };
+}
+
 exports.main = async (event) => {
   const { mode, combo, location } = event || {};
   const now = Date.now();
-  const history = await loadCollection('pick_history');
+  const history = await loadHistory();
 
-  if (mode === 'jackpot') {
+  if (mode === 'jackpot' && isJackpotAllowed(new Date())) {
     const restaurants = await loadCollection('restaurants');
     const restaurant = pickRestaurant(restaurants, history, now);
     if (!restaurant) {
       return { jackpot: true, restaurant: null, empty: true };
     }
-    return { jackpot: true, restaurant: { ...restaurant, id: restaurant._id || restaurant.id } };
+    return {
+      jackpot: true,
+      restaurant: withDistance({ ...restaurant, id: restaurant._id || restaurant.id }, location)
+    };
   }
 
   if (mode === 'outside') {
@@ -58,7 +73,10 @@ exports.main = async (event) => {
     const restaurants = await loadCollection('restaurants');
     const restaurant = pickRestaurant(restaurants, history, now);
     if (restaurant) {
-      return { jackpot: true, restaurant: { ...restaurant, id: restaurant._id || restaurant.id } };
+      return {
+        jackpot: true,
+        restaurant: withDistance({ ...restaurant, id: restaurant._id || restaurant.id }, location)
+      };
     }
   }
 

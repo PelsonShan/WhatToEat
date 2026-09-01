@@ -72,6 +72,7 @@
       </view>
       <block wx:if="{{result.restaurant}}">
         <view class="rest-name">{{result.restaurant.name}}</view>
+        <view wx:if="{{result.restaurant.distanceText}}" class="rest-distance">距你 {{result.restaurant.distanceText}}</view>
         <view wx:if="{{result.restaurant.address}}" class="rest-addr">{{result.restaurant.address}}</view>
         <view wx:if="{{result.restaurant.note}}" class="rest-note">{{result.restaurant.note}}</view>
         <view class="actions">

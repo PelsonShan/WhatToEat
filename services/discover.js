@@ -22,10 +22,26 @@ function favoriteRestaurant(poi) {
 }
 
 function noveltyCandidates() {
-  return Promise.all([listHotDishes(), listDishes('')])
-    .then(([hot, existing]) => {
+  const db = wx.cloud.database();
+  const _ = db.command;
+  const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  return Promise.all([
+    listHotDishes(),
+    listDishes(''),
+    db.collection('pick_history')
+      .where({ createdAt: _.gt(weekAgo) })
+      .field({ dishNames: true })
+      .limit(100)
+      .get()
+  ])
+    .then(([hot, existing, recent]) => {
       const names = new Set(existing.map((d) => d.name));
-      return hot.filter((d) => !names.has(d.name)).slice(0, 6);
+      (recent.data || []).forEach((record) => {
+        (record.dishNames || []).forEach((name) => names.add(name));
+      });
+      const candidates = hot.filter((d) => !names.has(d.name));
+      const shuffled = candidates.slice().sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, 6);
     });
 }
 
