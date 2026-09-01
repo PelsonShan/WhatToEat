@@ -2,8 +2,8 @@
   <view class="header" style="padding-top:{{statusBarHeight}}px">
     <view class="title-row">
       <text class="page-title">膳记</text>
+      <image class="cloud-logo-img" src="/assets/cloud-cream.png" mode="aspectFit" />
     </view>
-    <image class="cloud-logo-img" src="/assets/cloud-cream.png" mode="aspectFit" />
   </view>
 
   <view class="profile-card">

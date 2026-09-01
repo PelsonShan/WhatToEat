@@ -16,6 +16,9 @@ page {
 .title-row {
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 30rpx 32rpx;
 }
 
@@ -27,13 +30,9 @@ page {
 }
 
 .cloud-logo-img {
-  position: absolute;
-  right: 20rpx;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 90rpx;
-  height: 54rpx;
-  opacity: 0.85;
+  width: 76rpx;
+  height: 44rpx;
+  opacity: 0.8;
 }
 
 .nearby-card {
