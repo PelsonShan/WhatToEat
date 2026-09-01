@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "膳记",
+  "usingComponents": {
+    "seal": "/components/seal/seal"
+  }
+}

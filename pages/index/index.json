@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "今日签",
+  "usingComponents": {
+    "seal": "/components/seal/seal"
+  }
+}

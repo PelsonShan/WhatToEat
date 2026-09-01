@@ -1,0 +1,57 @@
+<view class="page discover-page">
+  <view class="section-title">附近好味</view>
+  <view class="nearby-card">
+    <view class="nearby-tip">寻味周边馆子，一键收藏进市井</view>
+    <button class="btn-primary" bindtap="seeNearby" loading="{{nearbyLoading}}">看看附近</button>
+  </view>
+  <view wx:if="{{nearby.length}}" class="poi-list">
+    <view wx:for="{{nearby}}" wx:key="id" class="poi-item">
+      <view class="poi-main">
+        <view class="poi-name-row">
+          <text class="poi-name">{{item.title}}</text>
+          <text wx:if="{{item.favorited}}" class="favorite-tag">已收藏</text>
+        </view>
+        <view class="poi-meta">
+          <text>{{item.category || '美食'}}</text>
+          <text>{{item.distance}}m</text>
+          <text wx:if="{{item.rating}}">评分 {{item.rating}}</text>
+        </view>
+      </view>
+      <text class="link import" data-id="{{item.id}}" bindtap="onFavorite">{{item.favorited ? '已收藏' : '收藏'}}</text>
+    </view>
+  </view>
+  <view wx:if="{{nearbyLoading}}" class="empty-tip">寻味中...</view>
+
+  <view class="section-title">四方风味</view>
+  <view class="cuisine-chips">
+    <view
+      wx:for="{{cuisines}}"
+      wx:key="*this"
+      class="cuisine-chip {{activeCuisine === item ? 'active' : ''}}"
+      bindtap="onCuisineTap"
+      data-cuisine="{{item}}"
+    >{{item}}</view>
+  </view>
+  <view wx:if="{{hotFiltered.length}}" class="flavor-list">
+    <view wx:for="{{hotFiltered}}" wx:key="_id" class="flavor-item">
+      <view class="flavor-main">
+        <text class="flavor-name">{{item.name}}</text>
+        <text class="flavor-sub">{{item.category}}</text>
+      </view>
+      <text class="link import" data-id="{{item._id}}" bindtap="onImport">加入食单</text>
+    </view>
+  </view>
+  <view wx:else class="empty-tip">该菜系暂无菜品</view>
+
+  <view class="section-title">尝新推荐</view>
+  <view wx:if="{{novelty.length}}" class="novelty-list">
+    <view wx:for="{{novelty}}" wx:key="_id" class="flavor-item">
+      <view class="flavor-main">
+        <text class="flavor-name">{{item.name}}</text>
+        <text class="flavor-sub">{{item.cuisine}} · {{item.category}}</text>
+      </view>
+      <text class="link import" data-id="{{item._id}}" bindtap="onImport">加入</text>
+    </view>
+  </view>
+  <view wx:else class="empty-tip">尝新的菜都收进食单了</view>
+</view>

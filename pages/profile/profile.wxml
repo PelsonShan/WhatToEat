@@ -1,0 +1,35 @@
+<view class="page profile-page">
+  <view class="profile-card">
+    <image wx:if="{{currentUser.avatar}}" class="avatar" src="{{currentUser.avatar}}" mode="aspectFill" />
+    <view wx:else class="avatar avatar-empty">{{currentUser.familyRole || '家'}}</view>
+    <view class="profile-info">
+      <view class="profile-name">{{currentUser.nickname || '家人'}}</view>
+      <view class="profile-role" bindtap="editRole">
+        <seal text="{{currentUser.familyRole || '未定'}}" size="11" />
+        <text class="edit-hint">点按可改称呼</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-title">家人</view>
+  <view class="family-row">
+    <view wx:for="{{users}}" wx:key="_id" class="family-item">
+      <view class="family-seal">{{item.familyRole || (item.nickname ? item.nickname.slice(0, 1) : '家')}}</view>
+      <text class="family-name">{{item.familyRole || item.nickname || '家人'}}</text>
+    </view>
+  </view>
+
+  <view class="section-title">膳录</view>
+  <view wx:if="{{history.length}}" class="history-list">
+    <view wx:for="{{history}}" wx:key="_id" class="history-item">
+      <view class="history-main">
+        <text class="history-label">{{item.label}}</text>
+        <text class="history-time">{{item.timeText}}</text>
+      </view>
+      <seal text="{{item.who}}" size="11" />
+    </view>
+  </view>
+  <view wx:else class="empty-tip">今日签确认后，膳录会记在这里</view>
+
+  <view class="colophon">一粥一饭 · 当思来处</view>
+</view>

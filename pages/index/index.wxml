@@ -1,0 +1,125 @@
+<view class="page index-page">
+  <view class="header">
+    <image class="cloud cloud-left" src="/assets/cloud-cream.svg" mode="aspectFit" />
+    <view class="title-row">
+      <text class="page-title">今日签</text>
+      <seal text="今日卦" size="14" />
+    </view>
+    <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+  </view>
+
+  <view class="mode-bar">
+    <view class="mode-item {{mode === 'home' ? 'active' : ''}}" bindtap="onModeTap" data-mode="home">在家</view>
+    <view class="mode-item {{mode === 'outside' ? 'active' : ''}}" bindtap="onModeTap" data-mode="outside">在外面</view>
+  </view>
+
+  <block wx:if="{{mode === 'home'}}">
+    <view class="combo-wrap">
+      <view class="combo-label">今日搭配</view>
+      <view class="chips">
+        <view
+          wx:for="{{combos}}"
+          wx:key="*this"
+          class="chip {{combo === item ? 'chip-active' : ''}}"
+          bindtap="onComboTap"
+          data-combo="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <view class="wheel-box">
+      <view class="wheel" style="transform: rotate({{wheelAngle}}deg);">
+        <view class="wheel-sector s1">主菜</view>
+        <view class="wheel-sector s2">汤</view>
+        <view class="wheel-sector s3">主菜</view>
+        <view class="wheel-sector s4">汤</view>
+        <view class="wheel-sector s5">主食</view>
+        <view class="wheel-sector s6">主菜</view>
+      </view>
+      <view class="wheel-pointer"></view>
+    </view>
+
+    <button class="btn-primary draw-btn" bindtap="startPick" loading="{{loading}}">抽一签</button>
+
+    <view wx:if="{{jackpotAllowed}}" class="jackpot-entry" bindtap="startJackpot">
+      <seal text="大奖" size="12" />
+      <text>超级大奖 · 当前 {{jackpotRateText}}</text>
+    </view>
+
+    <view wx:if="{{resultType === 'dishes'}}" class="result-card">
+      <view class="card-head">
+        <seal text="上上签" size="13" />
+        <text class="card-title">{{combo}}</text>
+      </view>
+      <view class="dish-chips">
+        <view wx:for="{{result.dishes}}" wx:key="id" class="dish-chip">
+          <text class="cat">{{item.category}}</text>
+          <text class="dish-name">{{item.name}}</text>
+        </view>
+      </view>
+      <view wx:if="{{result.soupMissing}}" class="notice">库里还没有汤，可去热门导入</view>
+      <view wx:if="{{result.relaxed}}" class="notice">可选项不多，已放宽防重复</view>
+      <view class="actions">
+        <button class="btn-outline" bindtap="reroll">换一批</button>
+        <button class="btn-primary" bindtap="confirm">确认</button>
+      </view>
+    </view>
+
+    <view wx:if="{{resultType === 'jackpot'}}" class="result-card jackpot-card">
+      <view class="card-head">
+        <seal text="大奖" size="13" />
+        <text class="card-title">今天去这里</text>
+      </view>
+      <block wx:if="{{result.restaurant}}">
+        <view class="rest-name">{{result.restaurant.name}}</view>
+        <view wx:if="{{result.restaurant.address}}" class="rest-addr">{{result.restaurant.address}}</view>
+        <view wx:if="{{result.restaurant.note}}" class="rest-note">{{result.restaurant.note}}</view>
+        <view class="actions">
+          <button class="btn-outline" bindtap="reroll">换一家</button>
+          <button class="btn-primary" bindtap="confirm">确认就去这家</button>
+          <button class="btn-outline nav-btn" bindtap="openNavigation">打开导航</button>
+        </view>
+      </block>
+      <view wx:else class="notice">市井还是空的，先去觅食附近好味收藏，或这次先在家吃</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="outside-card">
+      <view class="section-title">我就在外面</view>
+      <view class="outside-tip">按当前位置寻味，默认 5 公里内，随机一组 3 家</view>
+      <button class="btn-primary draw-btn" bindtap="startOutside" loading="{{loading}}">看看附近</button>
+    </view>
+
+    <view wx:if="{{resultType === 'outside'}}" class="result-card">
+      <view class="card-head">
+        <seal text="附近" size="13" />
+        <text class="card-title">候选一组</text>
+      </view>
+      <view class="candidate-list">
+        <view
+          wx:for="{{result.candidates}}"
+          wx:key="id"
+          class="candidate-item {{selectedCandidate.id === item.id ? 'selected' : ''}}"
+          bindtap="selectCandidate"
+          data-id="{{item.id}}"
+        >
+          <view class="candidate-main">
+            <text class="candidate-name">{{item.title}}</text>
+            <text wx:if="{{item.isFavorite}}" class="favorite-tag">收藏优先</text>
+          </view>
+          <view class="candidate-meta">
+            <text>{{item.category || '美食'}}</text>
+            <text>{{item.distance}}m</text>
+            <text wx:if="{{item.rating}}">评分 {{item.rating}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="actions">
+        <button class="btn-outline" bindtap="reroll">换一组</button>
+        <button class="btn-primary" bindtap="confirm">选这家</button>
+        <button class="btn-outline nav-btn" bindtap="openNavigation">导航</button>
+      </view>
+    </view>
+  </block>
+</view>

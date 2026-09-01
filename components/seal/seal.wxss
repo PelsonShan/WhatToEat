@@ -1,0 +1,11 @@
+.seal {
+  display: inline-block;
+  background: #b3261e;
+  color: #ffe9b3;
+  border: 1px solid #f2c14e;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-weight: 700;
+  transform: rotate(-3deg);
+  letter-spacing: 1px;
+}

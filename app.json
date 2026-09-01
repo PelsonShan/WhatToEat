@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/foodlist/foodlist",
+    "pages/discover/discover",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#9f1d16",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "今日签",
+    "backgroundColor": "#f8ecd0",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#6b4a35",
+    "selectedColor": "#9f1d16",
+    "backgroundColor": "#f8ecd0",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "今日签" },
+      { "pagePath": "pages/foodlist/foodlist", "text": "食单" },
+      { "pagePath": "pages/discover/discover", "text": "觅食" },
+      { "pagePath": "pages/profile/profile", "text": "膳记" }
+    ]
+  },
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于在“在外面”模式按当前位置寻味附近馆子"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

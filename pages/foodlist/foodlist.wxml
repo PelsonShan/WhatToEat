@@ -1,0 +1,113 @@
+<view class="page foodlist-page">
+  <view class="search-bar">
+    <input
+      class="search-input"
+      placeholder="寻味..."
+      placeholder-class="search-placeholder"
+      value="{{keyword}}"
+      bindinput="onSearchInput"
+      bindconfirm="onSearchConfirm"
+      confirm-type="search"
+    />
+  </view>
+
+  <view class="segments">
+    <view class="segment {{tab === 'kitchen' ? 'active' : ''}}" bindtap="onTabTap" data-tab="kitchen">灶下</view>
+    <view class="segment {{tab === 'street' ? 'active' : ''}}" bindtap="onTabTap" data-tab="street">市井</view>
+  </view>
+
+  <block wx:if="{{tab === 'kitchen'}}">
+    <view wx:if="{{dishes.length}}" class="list">
+      <view wx:for="{{dishes}}" wx:key="_id" class="item-card">
+        <view class="item-main">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-sub">{{item.category}} · {{item.cuisine || '家常'}}</text>
+        </view>
+        <view class="item-side">
+          <seal wx:if="{{item.frequent}}" text="常吃" size="11" />
+          <view class="item-actions">
+            <text class="link" data-id="{{item._id}}" data-type="dish" bindtap="openEdit">改</text>
+            <text class="link danger" data-id="{{item._id}}" data-type="dish" data-name="{{item.name}}" bindtap="onDelete">删</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty-tip">灶下还没有菜，点下方新增或热门导入</view>
+  </block>
+
+  <block wx:else>
+    <view wx:if="{{restaurants.length}}" class="list">
+      <view wx:for="{{restaurants}}" wx:key="_id" class="item-card">
+        <view class="item-main">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-sub">{{item.address || '暂无地址'}}</text>
+          <text wx:if="{{item.note}}" class="item-note">{{item.note}}</text>
+        </view>
+        <view class="item-side">
+          <seal wx:if="{{item.frequent}}" text="常去" size="11" />
+          <view class="item-actions">
+            <text class="link" data-id="{{item._id}}" data-type="restaurant" bindtap="openEdit">改</text>
+            <text class="link danger" data-id="{{item._id}}" data-type="restaurant" data-name="{{item.name}}" bindtap="onDelete">删</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty-tip">市井还没有馆子，可从觅食收藏或新增</view>
+  </block>
+
+  <view class="bottom-bar">
+    <button class="btn-outline bottom-btn" bindtap="openHot">热门导入</button>
+    <button class="btn-primary bottom-btn" bindtap="openAdd">+ 新增</button>
+  </view>
+
+  <view wx:if="{{showForm}}" class="mask" bindtap="closeForm">
+    <view class="sheet" catchtap="">
+      <view class="sheet-title">{{editingId ? '改' : '新'}}{{tab === 'kitchen' ? '菜' : '馆子'}}</view>
+      <input class="field" placeholder="名称" value="{{form.name}}" data-field="name" bindinput="onFormInput" />
+
+      <block wx:if="{{tab === 'kitchen'}}">
+        <view class="field-row">
+          <view
+            wx:for="{{['主菜', '汤', '主食']}}"
+            wx:key="*this"
+            class="mini-chip {{form.category === item ? 'active' : ''}}"
+            bindtap="onCategoryTap"
+            data-index="{{index}}"
+          >{{item}}</view>
+        </view>
+        <input class="field" placeholder="菜系（如川菜、粤菜）" value="{{form.cuisine}}" data-field="cuisine" bindinput="onFormInput" />
+      </block>
+
+      <block wx:else>
+        <input class="field" placeholder="地址" value="{{form.address}}" data-field="address" bindinput="onFormInput" />
+        <input class="field" placeholder="备注" value="{{form.note}}" data-field="note" bindinput="onFormInput" />
+      </block>
+
+      <view class="switch-row">
+        <text>{{tab === 'kitchen' ? '常吃' : '常去'}}</text>
+        <switch checked="{{form.frequent}}" bindchange="onFrequentChange" color="#9f1d16" />
+      </view>
+
+      <view class="sheet-actions">
+        <button class="btn-outline" bindtap="closeForm">取消</button>
+        <button class="btn-primary" bindtap="saveForm">保存</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showHot}}" class="mask" bindtap="closeHot">
+    <view class="sheet hot-sheet" catchtap="">
+      <view class="sheet-title">热门菜谱</view>
+      <scroll-view class="hot-list" scroll-y>
+        <view wx:for="{{hotDishes}}" wx:key="_id" class="hot-item">
+          <view class="hot-main">
+            <text class="hot-name">{{item.name}}</text>
+            <text class="hot-sub">{{item.cuisine}} · {{item.category}}</text>
+          </view>
+          <text class="link import" data-id="{{item._id}}" bindtap="onImport">导入</text>
+        </view>
+      </scroll-view>
+      <button class="btn-outline" bindtap="closeHot">关闭</button>
+    </view>
+  </view>
+</view>

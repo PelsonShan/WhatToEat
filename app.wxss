@@ -1,0 +1,62 @@
+page {
+  background: #f8ecd0;
+  color: #5a241d;
+  font-family: "Songti SC", "STSong", "KaiTi", "STKaiti", "SimSun", serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+.cn-font {
+  font-family: "Songti SC", "STSong", "KaiTi", "STKaiti", "SimSun", serif;
+}
+
+.seal {
+  display: inline-block;
+  background: #b3261e;
+  color: #ffe9b3;
+  border: 1px solid #f2c14e;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-weight: 700;
+  transform: rotate(-3deg);
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: #9f1d16;
+  color: #f2d9a4;
+  border: 2px solid #9f1d16;
+  border-radius: 5px;
+  text-align: center;
+  padding: 18rpx 0;
+  font-weight: 700;
+}
+
+.btn-outline {
+  background: #f8ecd0;
+  color: #9f1d16;
+  border: 2px solid #9f1d16;
+  border-radius: 5px;
+  text-align: center;
+  padding: 18rpx 0;
+  font-weight: 700;
+}
+
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24rpx 28rpx 140rpx;
+}
+
+.section-title {
+  color: #9f1d16;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin: 36rpx 0 18rpx;
+}
+
+.empty-tip {
+  color: #8a5a3b;
+  text-align: center;
+  padding: 60rpx 0;
+}

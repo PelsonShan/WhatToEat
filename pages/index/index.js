@@ -1,0 +1,161 @@
+const pickService = require('../../services/pick.js');
+const { isJackpotAllowed, jackpotRate } = require('../../utils/time.js');
+const { getLocation } = require('../../services/lbs.js');
+
+Page({
+  data: {
+    mode: 'home',
+    combos: ['一菜一汤', '两菜一汤', '三菜一汤', '自由单点'],
+    combo: '三菜一汤',
+    jackpotAllowed: false,
+    jackpotRateText: '',
+    loading: false,
+    result: null,
+    resultType: '',
+    selectedCandidate: null,
+    pickSource: 'home',
+    confirmed: false,
+    wheelAngle: 0,
+    locationGranted: false
+  },
+
+  onLoad() {
+    const now = new Date();
+    const allowed = isJackpotAllowed(now);
+    const rate = jackpotRate(now);
+    this.setData({
+      jackpotAllowed: allowed,
+      jackpotRateText: allowed ? `${Math.round(rate * 100)}%` : ''
+    });
+  },
+
+  onModeTap(e) {
+    const mode = e.currentTarget.dataset.mode;
+    this.setData({
+      mode,
+      result: null,
+      resultType: '',
+      selectedCandidate: null,
+      confirmed: false,
+      wheelAngle: 0
+    });
+  },
+
+  onComboTap(e) {
+    const combo = e.currentTarget.dataset.combo;
+    this.setData({ combo });
+  },
+
+  startPick() {
+    if (this.data.loading) return;
+    this.setData({
+      loading: true,
+      result: null,
+      resultType: '',
+      selectedCandidate: null,
+      confirmed: false
+    });
+    pickService.callRandomPick({ mode: 'home', combo: this.data.combo })
+      .then((res) => {
+        if (!res) return;
+        this.setData({ wheelAngle: this.data.wheelAngle + 720 + Math.random() * 360 });
+        this.setData({
+          result: res,
+          resultType: res.jackpot ? 'jackpot' : 'dishes',
+          pickSource: 'home'
+        });
+      })
+      .finally(() => this.setData({ loading: false }));
+  },
+
+  startJackpot() {
+    if (this.data.loading) return;
+    this.setData({
+      loading: true,
+      result: null,
+      resultType: '',
+      selectedCandidate: null,
+      confirmed: false
+    });
+    pickService.callRandomPick({ mode: 'jackpot' })
+      .then((res) => {
+        if (!res) return;
+        this.setData({
+          result: res,
+          resultType: 'jackpot',
+          pickSource: 'jackpot',
+          wheelAngle: this.data.wheelAngle + 720 + Math.random() * 360
+        });
+      })
+      .finally(() => this.setData({ loading: false }));
+  },
+
+  async startOutside() {
+    if (this.data.loading) return;
+    const location = await getLocation();
+    if (!location) return;
+    this.setData({
+      loading: true,
+      result: null,
+      resultType: '',
+      selectedCandidate: null,
+      confirmed: false,
+      locationGranted: true
+    });
+    pickService.callRandomPick({ mode: 'outside', location: { latitude: location.latitude, longitude: location.longitude } })
+      .then((res) => {
+        if (!res) return;
+        this.setData({
+          result: res,
+          resultType: 'outside',
+          selectedCandidate: res.candidates && res.candidates.length ? res.candidates[0] : null
+        });
+      })
+      .finally(() => this.setData({ loading: false }));
+  },
+
+  reroll() {
+    if (this.data.resultType === 'jackpot') {
+      if (this.data.pickSource === 'home') {
+        this.startPick();
+      } else {
+        this.startJackpot();
+      }
+    } else if (this.data.resultType === 'outside') {
+      this.startOutside();
+    } else {
+      this.startPick();
+    }
+  },
+
+  confirm() {
+    if (this.data.resultType === 'jackpot') {
+      pickService.confirmJackpot(this.data.result.restaurant);
+    } else if (this.data.resultType === 'outside') {
+      const candidate = this.data.selectedCandidate;
+      if (candidate) pickService.confirmOutside(candidate);
+    } else if (this.data.result && this.data.result.dishes) {
+      pickService.confirmHome(this.data.result.dishes, this.data.combo);
+    }
+  },
+
+  openNavigation() {
+    const target = this.data.resultType === 'jackpot'
+      ? this.data.result.restaurant
+      : this.data.selectedCandidate;
+    if (!target) return;
+    const loc = target.location || {};
+    wx.openLocation({
+      latitude: Number(loc.latitude || loc.lat),
+      longitude: Number(loc.longitude || loc.lng),
+      name: target.name || target.title,
+      address: target.address || ''
+    });
+  },
+
+  selectCandidate(e) {
+    const id = e.currentTarget.dataset.id;
+    const candidate = this.data.result.candidates.find((c) => c.id === id);
+    if (candidate) this.setData({ selectedCandidate: candidate });
+  }
+});

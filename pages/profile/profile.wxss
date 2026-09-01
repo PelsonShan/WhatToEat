@@ -1,0 +1,140 @@
+page {
+  background: #f8ecd0;
+}
+
+.profile-page {
+  padding-top: 20rpx;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  background: #fff7e0;
+  border: 2rpx solid #d9a441;
+  border-radius: 8rpx;
+  padding: 28rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid #f2c14e;
+}
+
+.avatar-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #b3261e;
+  color: #ffe9b3;
+  font-size: 40rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #5a241d;
+  margin-bottom: 12rpx;
+}
+
+.profile-role {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.edit-hint {
+  color: #8a5a3b;
+  font-size: 22rpx;
+}
+
+.family-row {
+  display: flex;
+  gap: 22rpx;
+  overflow-x: auto;
+  padding-bottom: 10rpx;
+}
+
+.family-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.family-seal {
+  width: 92rpx;
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #b3261e;
+  color: #ffe9b3;
+  border: 2rpx solid #f2c14e;
+  border-radius: 8rpx;
+  transform: rotate(-3deg);
+  font-size: 32rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.family-name {
+  color: #6b4a35;
+  font-size: 24rpx;
+  max-width: 110rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff7e0;
+  border: 2rpx solid #e2c68a;
+  border-radius: 8rpx;
+  padding: 18rpx 20rpx;
+}
+
+.history-main {
+  flex: 1;
+  min-width: 0;
+  margin-right: 16rpx;
+}
+
+.history-label {
+  display: block;
+  font-size: 28rpx;
+  color: #5a241d;
+  font-weight: 700;
+}
+
+.history-time {
+  display: block;
+  color: #8a5a3b;
+  font-size: 22rpx;
+  margin-top: 6rpx;
+}
+
+.colophon {
+  text-align: center;
+  color: #8a5a3b;
+  font-size: 26rpx;
+  letter-spacing: 4rpx;
+  padding: 50rpx 0 10rpx;
+}

@@ -1,0 +1,243 @@
+page {
+  background: #f8ecd0;
+}
+
+.foodlist-page {
+  padding-top: 20rpx;
+}
+
+.search-bar {
+  background: #fff7e0;
+  border: 2rpx solid #d9a441;
+  border-radius: 999rpx;
+  padding: 12rpx 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  font-size: 28rpx;
+  color: #5a241d;
+}
+
+.search-placeholder {
+  color: #8a5a3b;
+}
+
+.segments {
+  display: flex;
+  background: #fff7e0;
+  border: 2rpx solid #d9a441;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 22rpx 0;
+}
+
+.segment {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  color: #6b4a35;
+  font-size: 30rpx;
+}
+
+.segment.active {
+  background: #9f1d16;
+  color: #f2d9a4;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff7e0;
+  border: 2rpx solid #e2c68a;
+  border-radius: 8rpx;
+  padding: 20rpx;
+}
+
+.item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  display: block;
+  font-size: 32rpx;
+  color: #5a241d;
+  font-weight: 700;
+}
+
+.item-sub {
+  display: block;
+  color: #8a5a3b;
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+
+.item-note {
+  display: block;
+  color: #6b4a35;
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+
+.item-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10rpx;
+  margin-left: 16rpx;
+}
+
+.item-actions {
+  display: flex;
+  gap: 18rpx;
+}
+
+.link {
+  color: #9f1d16;
+  font-size: 26rpx;
+}
+
+.link.danger {
+  color: #8a5a3b;
+}
+
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 28rpx 34rpx;
+  background: #f8ecd0;
+  border-top: 2rpx solid #d9a441;
+}
+
+.bottom-btn {
+  flex: 1;
+}
+
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(90, 36, 29, 0.45);
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sheet {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff7e0;
+  border-radius: 16rpx 16rpx 0 0;
+  padding: 28rpx;
+}
+
+.sheet-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #5a241d;
+  margin-bottom: 20rpx;
+}
+
+.field {
+  background: #f8ecd0;
+  border: 2rpx solid #e2c68a;
+  border-radius: 6rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+}
+
+.field-row {
+  display: flex;
+  gap: 14rpx;
+  margin-bottom: 16rpx;
+}
+
+.mini-chip {
+  border: 2rpx solid #b3261e;
+  color: #9f1d16;
+  border-radius: 999rpx;
+  padding: 8rpx 22rpx;
+  font-size: 26rpx;
+}
+
+.mini-chip.active {
+  background: #b3261e;
+  color: #ffe9b3;
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6b4a35;
+  margin: 8rpx 0 20rpx;
+}
+
+.sheet-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.sheet-actions button {
+  flex: 1;
+}
+
+.hot-sheet {
+  height: 72vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hot-list {
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 20rpx;
+}
+
+.hot-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #e2c68a;
+  padding: 18rpx 4rpx;
+}
+
+.hot-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.hot-name {
+  display: block;
+  font-size: 30rpx;
+  color: #5a241d;
+  font-weight: 700;
+}
+
+.hot-sub {
+  display: block;
+  color: #8a5a3b;
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+
+.link.import {
+  color: #9f1d16;
+  border: 2rpx solid #9f1d16;
+  border-radius: 4rpx;
+  padding: 6rpx 18rpx;
+}
