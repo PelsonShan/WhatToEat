@@ -17,8 +17,8 @@
   </view>
 
   <view class="mode-bar">
-    <view class="mode-item {{mode === 'home' ? 'active' : ''}}" bindtap="onModeTap" data-mode="home">在家</view>
-    <view class="mode-item {{mode === 'outside' ? 'active' : ''}}" bindtap="onModeTap" data-mode="outside">在外面</view>
+    <view class="mode-item {{mode === 'home' ? 'active' : ''}}" bindtap="onModeTap" data-mode="home">灶下</view>
+    <view class="mode-item {{mode === 'outside' ? 'active' : ''}}" bindtap="onModeTap" data-mode="outside">市井</view>
   </view>
 
   <block wx:if="{{mode === 'home'}}">
