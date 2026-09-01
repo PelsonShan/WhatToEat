@@ -31,10 +31,22 @@
       </view>
     </view>
 
-    <view class="draw-hero">
-      <button class="btn-primary draw-hero-btn" bindtap="startPick" loading="{{loading}}">抽一签</button>
-      <view class="draw-hero-sub">一签定今日 · 灶下好味</view>
+    <view class="wheel-box" bindtap="startPick">
+      <view class="wheel">
+        <view class="wheel-sector s1">主菜</view>
+        <view class="wheel-sector s2">汤</view>
+        <view class="wheel-sector s3">主菜</view>
+        <view class="wheel-sector s4">汤</view>
+        <view class="wheel-sector s5">主食</view>
+        <view class="wheel-sector s6">主菜</view>
+        <view class="wheel-center">
+          <text class="wheel-label">今日卦</text>
+          <text class="wheel-char">吉</text>
+        </view>
+      </view>
+      <view class="wheel-pointer"></view>
     </view>
+    <view class="draw-hero-sub">点今日卦，抽一支今日签</view>
 
     <view wx:if="{{jackpotAllowed}}" class="jackpot-entry" bindtap="startJackpot">
       <seal text="大奖" size="12" />
