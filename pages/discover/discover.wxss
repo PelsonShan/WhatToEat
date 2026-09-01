@@ -3,6 +3,7 @@ page {
 }
 
 .discover-page {
+  position: relative;
   padding: 0 20rpx 180rpx;
 }
 

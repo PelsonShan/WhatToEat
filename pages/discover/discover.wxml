@@ -1,4 +1,6 @@
 <view class="page discover-page">
+  <view class="watermark wm-right"></view>
+  <view class="watermark wm-left"></view>
   <view class="header" style="padding-top:{{statusBarHeight}}px">
     <view class="title-row">
       <text class="page-title">觅食</text>

@@ -3,6 +3,7 @@ page {
 }
 
 .profile-page {
+  position: relative;
   padding: 0 20rpx 180rpx;
 }
 

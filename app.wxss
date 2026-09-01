@@ -10,6 +10,26 @@ page {
   font-family: "Songti SC", "STSong", "KaiTi", "STKaiti", "SimSun", serif;
 }
 
+.watermark {
+  position: absolute;
+  width: 240rpx;
+  height: 140rpx;
+  background: url("/assets/cloud-v9-red.png") no-repeat center / contain;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.wm-right {
+  right: -50rpx;
+  bottom: 300rpx;
+}
+
+.wm-left {
+  left: -50rpx;
+  top: 340rpx;
+  transform: scaleX(-1);
+}
+
 .seal {
   display: inline-block;
   background: #b3261e;

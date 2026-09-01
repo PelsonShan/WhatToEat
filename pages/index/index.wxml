@@ -1,4 +1,6 @@
 <view class="page index-page">
+  <view class="watermark wm-right"></view>
+  <view class="watermark wm-left"></view>
   <view class="header" style="padding-top:{{statusBarHeight}}px">
     <view class="header-status">
       <text>{{shichen}}</text>

@@ -3,6 +3,7 @@ page {
 }
 
 .foodlist-page {
+  position: relative;
   padding: 0 20rpx 220rpx;
 }
 
