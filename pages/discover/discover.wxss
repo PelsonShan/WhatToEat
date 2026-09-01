@@ -9,8 +9,6 @@ page {
 .header {
   position: relative;
   background: #9f1d16;
-  width: 100%;
-  border-radius: 0;
   border-bottom: 2rpx solid #f2c14e;
   margin: 0 -20rpx 24rpx;
 }
