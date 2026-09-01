@@ -8,22 +8,19 @@ page {
 
 .header {
   position: relative;
-  min-height: 150rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #9f1d16;
-  border-bottom: 4rpx solid #d9a441;
+  border-bottom: 2rpx solid #f2c14e;
   margin-bottom: 20rpx;
 }
 
 .title-row {
   position: relative;
   z-index: 2;
+  padding: 26rpx 28rpx;
 }
 
 .page-title {
-  font-size: 48rpx;
+  font-size: 40rpx;
   font-weight: 700;
   color: #f8ecd0;
   letter-spacing: 8rpx;
@@ -31,10 +28,11 @@ page {
 
 .cloud {
   position: absolute;
-  top: 16rpx;
-  right: 6rpx;
-  width: 230rpx;
-  height: 130rpx;
+  right: 14rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150rpx;
+  height: 90rpx;
   opacity: 0.5;
 }
 

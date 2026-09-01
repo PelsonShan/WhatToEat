@@ -1,10 +1,14 @@
 <view class="page index-page">
   <view class="header" style="padding-top:{{statusBarHeight}}px">
-    <image class="cloud cloud-left" src="/assets/cloud-cream.svg" mode="aspectFit" />
-    <view class="title-row">
-      <text class="page-title">今日签</text>
+    <view class="header-status">
+      <text>巳时</text>
+      <text>宜 开饭</text>
     </view>
-    <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+    <view class="header-main">
+      <text class="page-title">今日签</text>
+      <image class="cloud cloud-right" src="/assets/cloud-cream.svg" mode="aspectFit" />
+    </view>
+    <view class="header-divider"></view>
   </view>
 
   <view class="greeting-row">
