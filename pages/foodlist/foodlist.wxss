@@ -3,14 +3,16 @@ page {
 }
 
 .foodlist-page {
-  padding-bottom: 220rpx;
+  padding: 0 20rpx 220rpx;
 }
 
 .header {
   position: relative;
   background: #9f1d16;
+  width: 100%;
+  border-radius: 0;
   border-bottom: 2rpx solid #f2c14e;
-  margin-bottom: 20rpx;
+  margin: 0 -20rpx 20rpx;
 }
 
 .title-row {

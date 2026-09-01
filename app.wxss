@@ -4,6 +4,8 @@ page {
   font-family: "Songti SC", "STSong", "KaiTi", "STKaiti", "SimSun", serif;
   font-size: 28rpx;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 
 .cn-font {
