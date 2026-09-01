@@ -33,18 +33,12 @@
 
     <view class="wheel-box" bindtap="startPick">
       <view class="wheel">
-        <view class="wheel-sector s1">主菜</view>
-        <view class="wheel-sector s2">汤</view>
-        <view class="wheel-sector s3">主菜</view>
-        <view class="wheel-sector s4">汤</view>
-        <view class="wheel-sector s5">主食</view>
-        <view class="wheel-sector s6">主菜</view>
         <view class="wheel-center">
           <text class="wheel-label">今日卦</text>
           <text class="wheel-char">吉</text>
         </view>
       </view>
-      <view class="wheel-pointer"></view>
+      <view class="wheel-pointer">▼</view>
     </view>
     <view class="draw-hero-sub">点今日卦，抽一支今日签</view>
 
@@ -55,8 +49,8 @@
 
     <view wx:if="{{resultType === 'dishes'}}" class="result-card">
       <view class="card-head">
+        <text class="card-title">{{combo}} · 今日签文</text>
         <seal text="上上签" size="13" />
-        <text class="card-title">{{combo}}</text>
       </view>
       <view class="dish-chips">
         <view wx:for="{{result.dishes}}" wx:key="id" class="dish-chip">
@@ -68,7 +62,7 @@
       <view wx:if="{{result.relaxed}}" class="notice">可选项不多，已放宽防重复</view>
       <view class="actions">
         <button class="btn-outline" bindtap="reroll">换一批</button>
-        <button class="btn-primary" bindtap="confirm">确认</button>
+        <button class="btn-primary" bindtap="confirm">确认，就吃这个</button>
       </view>
     </view>
 

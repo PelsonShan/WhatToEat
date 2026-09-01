@@ -111,56 +111,30 @@ page {
 }
 
 .wheel-box {
-  width: 460rpx;
-  height: 460rpx;
-  margin: 30rpx auto 0;
+  width: 260rpx;
+  height: 260rpx;
+  margin: 34rpx auto 0;
   position: relative;
 }
 
 .wheel {
-  width: 460rpx;
-  height: 460rpx;
+  width: 220rpx;
+  height: 220rpx;
   border-radius: 50%;
-  border: 10rpx solid #d9a441;
-  background: conic-gradient(
-    #9f1d16 0deg 60deg,
-    #f2c14e 60deg 120deg,
-    #b3261e 120deg 180deg,
-    #d9a441 180deg 240deg,
-    #9f1d16 240deg 300deg,
-    #f2c14e 300deg 360deg
-  );
-  position: relative;
-  box-shadow: 0 8rpx 24rpx rgba(159, 29, 22, 0.3);
-}
-
-.wheel-sector {
+  border: 8rpx solid #d9a441;
+  background: conic-gradient(#b3261e 0 25%, #f2c14e 25% 50%, #d9a441 50% 75%, #b3261e 75% 100%);
+  box-shadow: 0 0 0 4rpx #9f1d16, 0 10rpx 28rpx rgba(159, 29, 22, 0.3);
   position: absolute;
   left: 50%;
   top: 50%;
-  color: #ffe9b3;
-  font-size: 26rpx;
-  font-weight: 700;
-  transform-origin: 0 0;
-  white-space: nowrap;
+  transform: translate(-50%, -50%);
 }
-
-.wheel-sector.s1 { transform: rotate(30deg) translate(160rpx); }
-.wheel-sector.s2 { transform: rotate(90deg) translate(160rpx); }
-.wheel-sector.s3 { transform: rotate(150deg) translate(160rpx); }
-.wheel-sector.s4 { transform: rotate(210deg) translate(160rpx); }
-.wheel-sector.s5 { transform: rotate(270deg) translate(160rpx); }
-.wheel-sector.s6 { transform: rotate(330deg) translate(160rpx); }
 
 .wheel-center {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 180rpx;
-  height: 180rpx;
-  transform: translate(-50%, -50%);
+  inset: 36rpx;
   background: #f8ecd0;
-  border: 6rpx solid #9f1d16;
+  border: 4rpx solid #9f1d16;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -170,24 +144,21 @@ page {
 }
 
 .wheel-label {
-  font-size: 26rpx;
+  font-size: 20rpx;
 }
 
 .wheel-char {
-  font-size: 64rpx;
+  font-size: 36rpx;
   font-weight: 800;
 }
 
 .wheel-pointer {
   position: absolute;
+  top: -12rpx;
   left: 50%;
-  top: -16rpx;
-  width: 0;
-  height: 0;
-  border-left: 24rpx solid transparent;
-  border-right: 24rpx solid transparent;
-  border-top: 48rpx solid #b3261e;
   transform: translateX(-50%);
+  color: #d9a441;
+  font-size: 30rpx;
   z-index: 2;
 }
 
