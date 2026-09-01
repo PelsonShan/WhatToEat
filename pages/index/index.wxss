@@ -38,17 +38,8 @@ page {
   width: 90rpx;
   height: 54rpx;
   opacity: 0.85;
+  background: url("/assets/cloud-v9.png") no-repeat center / contain;
 }
-
-.cloud-logo .puff {
-  position: absolute;
-  border-radius: 50%;
-  background: #f2d9a4;
-}
-
-.cloud-logo .p1 { width: 30rpx; height: 30rpx; left: 8rpx; top: 24rpx; }
-.cloud-logo .p2 { width: 38rpx; height: 38rpx; left: 28rpx; top: 10rpx; }
-.cloud-logo .p3 { width: 28rpx; height: 28rpx; left: 54rpx; top: 22rpx; }
 
 .header-divider {
   height: 10rpx;

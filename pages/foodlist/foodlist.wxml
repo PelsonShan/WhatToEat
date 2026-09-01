@@ -2,11 +2,7 @@
   <view class="header" style="padding-top:{{statusBarHeight}}px">
     <view class="title-row">
       <text class="page-title">食单</text>
-      <view class="cloud-logo">
-        <view class="puff p1"></view>
-        <view class="puff p2"></view>
-        <view class="puff p3"></view>
-      </view>
+      <view class="cloud-logo"></view>
     </view>
   </view>
 
