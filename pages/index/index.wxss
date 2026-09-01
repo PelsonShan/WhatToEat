@@ -11,28 +11,44 @@ page {
   background: #9f1d16;
   width: 100%;
   border-radius: 0;
-  border-bottom: 2rpx solid #f2c14e;
-  margin: 0 -20rpx 24rpx;
+  margin: 0 -20rpx;
 }
 
-.title-row {
+.header-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 18rpx 32rpx 10rpx;
+  font-size: 28rpx;
+  color: #f2d9a4;
+}
+
+.header-main {
   position: relative;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 30rpx 32rpx;
+  border-top: 2rpx solid #f2c14e;
+  border-bottom: 2rpx solid #f2c14e;
 }
 
 .cloud {
   position: absolute;
-  right: 14rpx;
+  right: 10rpx;
   top: 50%;
   transform: translateY(-50%);
-  width: 150rpx;
-  height: 90rpx;
+  width: 170rpx;
+  height: 100rpx;
   opacity: 0.5;
 }
 
+.header-divider {
+  height: 10rpx;
+  background: repeating-linear-gradient(90deg, #d9a441 0 14rpx, #9f1d16 14rpx 18rpx);
+}
+
 .page-title {
-  font-size: 44rpx;
+  font-size: 46rpx;
   font-weight: 700;
   color: #f8ecd0;
   letter-spacing: 8rpx;
