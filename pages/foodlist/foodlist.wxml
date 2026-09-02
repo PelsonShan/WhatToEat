@@ -96,7 +96,7 @@
 
       <view class="sheet-actions">
         <button class="btn-outline" bindtap="closeForm">取消</button>
-        <button class="btn-primary" bindtap="saveForm">保存</button>
+        <button class="btn-primary" bindtap="saveForm">确认</button>
       </view>
     </view>
   </view>
