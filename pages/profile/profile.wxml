@@ -15,10 +15,6 @@
         <text class="edit-hint">点按可改称呼</text>
       </view>
     </view>
-    <button class="invite-btn" open-type="share">
-      <text class="invite-line">邀请</text>
-      <text class="invite-line">家人</text>
-    </button>
   </view>
 
   <view class="section-title">家人</view>
@@ -28,6 +24,7 @@
       <text class="family-name">{{item.familyRole || item.nickname || '家人'}}</text>
     </view>
   </view>
+  <button class="invite-btn" open-type="share">邀请家人</button>
   <view class="section-title">膳录</view>
   <view wx:if="{{history.length}}" class="history-list">
     <view wx:for="{{history}}" wx:key="_id" class="history-item">
