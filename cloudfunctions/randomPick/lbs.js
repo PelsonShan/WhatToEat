@@ -14,7 +14,8 @@ async function searchNearby(location, keyword = '美食', radius = 5000) {
   const key = process.env.TENCENT_LBS_KEY;
   if (!key) throw new Error('TENCENT_LBS_KEY 未配置');
   const base = 'https://apis.map.qq.com/ws/place/v1/explore';
-  const url = `${base}?keyword=${encodeURIComponent(keyword)}&location=${location.latitude},${location.longitude}&radius=${radius}&page_size=20&page_index=1&orderby=_distance&key=${key}`;
+  const boundary = `nearby(${location.latitude},${location.longitude},${radius})`;
+  const url = `${base}?keyword=${encodeURIComponent(keyword)}&boundary=${encodeURIComponent(boundary)}&page_size=20&page_index=1&orderby=_distance&key=${encodeURIComponent(key)}`;
   const body = JSON.parse(await httpGet(url));
   if (body.status !== 0) throw new Error(body.message || '附近检索失败');
   return (body.data || []).map((raw) => ({
