@@ -32,14 +32,21 @@ Page({
     getCurrentUser().then((currentUser) => {
       this.setData({ currentUser });
       return listUsers();
-    }).then((users) => this.setData({ users }));
+    }).then((users) => this.setData({
+      users: users.map((u) => ({
+        ...u,
+        initial: u.familyRole || (u.nickname ? Array.from(u.nickname)[0] : '家')
+      }))
+    }));
     listHistory().then((history) => {
       this.setData({
         history: history.map((item) => ({
           ...item,
           timeText: formatTime(item.createdAt),
           label: historyLabel(item),
-          who: item.confirmBy || '家人'
+          who: item.confirmBy && !/^o[A-Za-z0-9_-]{20,}$/.test(item.confirmBy)
+            ? item.confirmBy
+            : '家人'
         }))
       });
     });

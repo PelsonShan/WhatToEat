@@ -20,7 +20,7 @@
   <view class="section-title">家人</view>
   <view class="family-row">
     <view wx:for="{{users}}" wx:key="_id" class="family-item">
-      <view class="family-seal">{{item.familyRole || (item.nickname ? item.nickname.slice(0, 1) : '家')}}</view>
+      <view class="family-seal">{{item.initial}}</view>
       <text class="family-name">{{item.familyRole || item.nickname || '家人'}}</text>
     </view>
   </view>

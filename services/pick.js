@@ -13,7 +13,7 @@ function getCurrentUser() {
 }
 
 function resolveConfirmBy(user) {
-  return user.familyRole || user.nickname || user.openid || '家人';
+  return user.familyRole || user.nickname || '家人';
 }
 
 function callRandomPick(params) {
