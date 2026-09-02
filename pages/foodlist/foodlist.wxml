@@ -67,7 +67,7 @@
   </view>
 
   <view wx:if="{{showForm}}" class="mask" bindtap="closeForm">
-    <view class="sheet" catchtap="">
+    <view class="sheet" catchtap="noop">
       <view class="sheet-title">{{editingId ? '改' : '新'}}{{tab === 'kitchen' ? '菜' : '馆子'}}</view>
       <input class="field" placeholder="名称" value="{{form.name}}" data-field="name" bindinput="onFormInput" />
 
@@ -102,7 +102,7 @@
   </view>
 
   <view wx:if="{{showHot}}" class="mask" bindtap="closeHot">
-    <view class="sheet hot-sheet" catchtap="">
+    <view class="sheet hot-sheet" catchtap="noop">
       <view class="sheet-title">热门菜谱</view>
       <scroll-view class="hot-list" scroll-y>
         <view wx:for="{{hotDishes}}" wx:key="_id" class="hot-item">

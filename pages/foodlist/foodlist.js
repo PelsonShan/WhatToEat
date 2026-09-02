@@ -92,6 +92,8 @@ Page({
     this.setData({ showForm: false, editingId: '' });
   },
 
+  noop() {},
+
   saveForm() {
     const form = this.data.form;
     if (!form.name || !form.name.trim()) {
