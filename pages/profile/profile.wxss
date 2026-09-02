@@ -118,6 +118,21 @@ page {
   white-space: nowrap;
 }
 
+.invite-btn {
+  margin: 26rpx 0 8rpx;
+  background: #9f1d16;
+  color: #f2d9a4;
+  border: 2rpx solid #f2c14e;
+  border-radius: 12rpx;
+  min-height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
 .history-list {
   display: flex;
   flex-direction: column;

@@ -24,6 +24,7 @@
       <text class="family-name">{{item.familyRole || item.nickname || '家人'}}</text>
     </view>
   </view>
+  <button class="invite-btn" open-type="share">邀请家人</button>
 
   <view class="section-title">膳录</view>
   <view wx:if="{{history.length}}" class="history-list">

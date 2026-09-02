@@ -25,7 +25,15 @@ Page({
     const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
     this.setData({ statusBarHeight: info.statusBarHeight || 20 });
     if (this.getTabBar) this.getTabBar().setData({ selected: 3 });
+    wx.showShareMenu({ menus: ['shareAppMessage'] });
     this.load();
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '来一起决定今天吃什么',
+      path: '/pages/index/index'
+    };
   },
 
   load() {
