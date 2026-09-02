@@ -26,6 +26,10 @@ function httpGet(url) {
   });
 }
 
+function isFood(category) {
+  return /美食|餐饮|餐|食/.test(category || '');
+}
+
 exports.main = async (event) => {
   const { location, keyword = '美食', radius = 5000 } = event || {};
   const key = process.env.TENCENT_LBS_KEY;
@@ -37,13 +41,13 @@ exports.main = async (event) => {
   }
   const base = 'https://apis.map.qq.com/ws/place/v1/explore';
   const boundary = `nearby(${location.latitude},${location.longitude},${radius})`;
-  const url = `${base}?keyword=${encodeURIComponent(keyword)}&boundary=${encodeURIComponent(boundary)}&page_size=20&page_index=1&orderby=_distance&key=${encodeURIComponent(key)}`;
+  const url = `${base}?keyword=${encodeURIComponent(keyword)}&category=${encodeURIComponent('美食')}&boundary=${encodeURIComponent(boundary)}&page_size=20&page_index=1&orderby=_distance&key=${encodeURIComponent(key)}`;
   const body = JSON.parse(await httpGet(url));
   if (body.status !== 0) {
     throw new Error(body.message || '附近检索失败');
   }
   return {
-    pois: (body.data || []).map(cleanPoi),
+    pois: (body.data || []).filter((raw) => isFood(raw.category)).map(cleanPoi),
     location
   };
 };

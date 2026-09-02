@@ -10,15 +10,19 @@ function httpGet(url) {
   });
 }
 
+function isFood(category) {
+  return /美食|餐饮|餐|食/.test(category || '');
+}
+
 async function searchNearby(location, keyword = '美食', radius = 5000) {
   const key = process.env.TENCENT_LBS_KEY;
   if (!key) throw new Error('TENCENT_LBS_KEY 未配置');
   const base = 'https://apis.map.qq.com/ws/place/v1/explore';
   const boundary = `nearby(${location.latitude},${location.longitude},${radius})`;
-  const url = `${base}?keyword=${encodeURIComponent(keyword)}&boundary=${encodeURIComponent(boundary)}&page_size=20&page_index=1&orderby=_distance&key=${encodeURIComponent(key)}`;
+  const url = `${base}?keyword=${encodeURIComponent(keyword)}&category=${encodeURIComponent('美食')}&boundary=${encodeURIComponent(boundary)}&page_size=20&page_index=1&orderby=_distance&key=${encodeURIComponent(key)}`;
   const body = JSON.parse(await httpGet(url));
   if (body.status !== 0) throw new Error(body.message || '附近检索失败');
-  return (body.data || []).map((raw) => ({
+  return (body.data || []).filter((raw) => isFood(raw.category)).map((raw) => ({
     id: raw.id || raw.title,
     title: raw.title || raw.name || '未命名馆子',
     address: raw.address || '',
