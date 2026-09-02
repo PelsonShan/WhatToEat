@@ -164,37 +164,37 @@ page {
   box-sizing: border-box;
   background: #fff7e0;
   border-radius: 16rpx 16rpx 0 0;
-  padding: 28rpx;
+  padding: 36rpx;
 }
 
 .sheet-title {
-  font-size: 34rpx;
+  font-size: 40rpx;
   font-weight: 700;
   color: #5a241d;
-  margin-bottom: 20rpx;
+  margin-bottom: 28rpx;
 }
 
 .field {
   background: #f8ecd0;
   border: 2rpx solid #e2c68a;
-  border-radius: 6rpx;
-  padding: 16rpx 20rpx;
-  margin-bottom: 16rpx;
-  font-size: 28rpx;
+  border-radius: 10rpx;
+  padding: 22rpx 24rpx;
+  margin-bottom: 22rpx;
+  font-size: 32rpx;
 }
 
 .field-row {
   display: flex;
-  gap: 14rpx;
-  margin-bottom: 16rpx;
+  gap: 18rpx;
+  margin-bottom: 22rpx;
 }
 
 .mini-chip {
   border: 2rpx solid #b3261e;
   color: #9f1d16;
   border-radius: 999rpx;
-  padding: 8rpx 22rpx;
-  font-size: 26rpx;
+  padding: 16rpx 30rpx;
+  font-size: 30rpx;
 }
 
 .mini-chip.active {
@@ -207,16 +207,23 @@ page {
   align-items: center;
   justify-content: space-between;
   color: #6b4a35;
-  margin: 8rpx 0 20rpx;
+  font-size: 30rpx;
+  margin: 10rpx 0 26rpx;
 }
 
 .sheet-actions {
   display: flex;
-  gap: 16rpx;
+  gap: 20rpx;
 }
 
 .sheet-actions button {
   flex: 1;
+  min-height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  border-radius: 12rpx;
 }
 
 .hot-sheet {
