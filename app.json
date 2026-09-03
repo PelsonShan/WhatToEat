@@ -31,5 +31,8 @@
       "desc": "用于在“在外面”模式按当前位置寻味附近馆子"
     }
   },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
   "sitemapLocation": "sitemap.json"
 }
