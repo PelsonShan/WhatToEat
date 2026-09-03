@@ -50,6 +50,9 @@ Page({
   },
 
   async seeNearby() {
+    wx.showToast({ title: '功能暂未上线', icon: 'none' });
+    return;
+    // 定位功能暂缓上线；恢复时放开下面的逻辑
     if (this.data.nearbyLoading) return;
     const location = await getLocation();
     if (!location) return;
