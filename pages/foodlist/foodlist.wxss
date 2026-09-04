@@ -3,7 +3,7 @@ page {
 }
 
 .foodlist-page {
-  padding: 0 20rpx 220rpx;
+  padding: 0 20rpx 280rpx;
 }
 
 .header {

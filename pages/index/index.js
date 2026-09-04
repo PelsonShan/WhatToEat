@@ -2,6 +2,8 @@ const pickService = require('../../services/pick.js');
 const { isJackpotAllowed, jackpotRate } = require('../../utils/time.js');
 const { getLocation } = require('../../services/lbs.js');
 
+const DRAW_TRANSITION_MS = 1000;
+
 function getShichen(hour) {
   const names = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
   return `${names[Math.floor(((hour + 1) % 24) / 2)]}时`;
@@ -15,6 +17,7 @@ Page({
     jackpotAllowed: false,
     jackpotRateText: '',
     loading: false,
+    drawing: false,
     result: null,
     resultType: '',
     selectedCandidate: null,
@@ -63,8 +66,10 @@ Page({
 
   startPick() {
     if (this.data.loading) return;
+    const startedAt = Date.now();
     this.setData({
       loading: true,
+      drawing: true,
       result: null,
       resultType: '',
       selectedCandidate: null,
@@ -72,20 +77,28 @@ Page({
     });
     pickService.callRandomPick({ mode: 'home', combo: this.data.combo })
       .then((res) => {
+        const elapsed = Date.now() - startedAt;
+        const wait = Math.max(0, DRAW_TRANSITION_MS - elapsed);
+        return new Promise((resolve) => setTimeout(() => resolve(res), wait));
+      })
+      .then((res) => {
         if (!res) return;
         this.setData({
           result: res,
           resultType: res.jackpot ? 'jackpot' : 'dishes',
-          pickSource: 'home'
+          pickSource: 'home',
+          drawing: false
         });
       })
-      .finally(() => this.setData({ loading: false }));
+      .finally(() => this.setData({ loading: false, drawing: false }));
   },
 
   startJackpot() {
     if (this.data.loading) return;
+    const startedAt = Date.now();
     this.setData({
       loading: true,
+      drawing: true,
       result: null,
       resultType: '',
       selectedCandidate: null,
@@ -93,15 +106,21 @@ Page({
     });
     pickService.callRandomPick({ mode: 'jackpot' })
       .then((res) => {
+        const elapsed = Date.now() - startedAt;
+        const wait = Math.max(0, DRAW_TRANSITION_MS - elapsed);
+        return new Promise((resolve) => setTimeout(() => resolve(res), wait));
+      })
+      .then((res) => {
         if (!res) return;
         const isJackpot = !!res.jackpot;
         this.setData({
           result: res,
           resultType: isJackpot ? 'jackpot' : (res.dishes ? 'dishes' : ''),
-          pickSource: isJackpot ? 'jackpot' : 'home'
+          pickSource: isJackpot ? 'jackpot' : 'home',
+          drawing: false
         });
       })
-      .finally(() => this.setData({ loading: false }));
+      .finally(() => this.setData({ loading: false, drawing: false }));
   },
 
   async startOutside() {

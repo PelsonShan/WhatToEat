@@ -117,6 +117,25 @@ page {
   position: relative;
 }
 
+.wheel-box.wheel-shaking {
+  animation: draw-shake 0.42s ease-in-out infinite;
+}
+
+@keyframes draw-shake {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  20% {
+    transform: translateY(-5rpx) rotate(-3deg);
+  }
+  45% {
+    transform: translateY(2rpx) rotate(2deg);
+  }
+  70% {
+    transform: translateY(-2rpx) rotate(-2deg);
+  }
+}
+
 .wheel {
   width: 260rpx;
   height: 260rpx;
@@ -186,6 +205,18 @@ page {
   border-radius: 10rpx;
   padding: 26rpx;
   margin-top: 26rpx;
+  animation: card-reveal 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18rpx) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .card-head {
@@ -215,6 +246,39 @@ page {
   border-radius: 28rpx;
   padding: 8rpx 20rpx;
   background: #fff7e0;
+  opacity: 0;
+  animation: chip-in 0.28s ease forwards;
+}
+
+.dish-chip:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.dish-chip:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.dish-chip:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.dish-chip:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.dish-chip:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(8rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cat {

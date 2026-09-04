@@ -47,8 +47,8 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.4",
-  "appid": "wx29324c9c39684143",
+  "libVersion": "3.16.1",
+  "appid": "wxfa6d3fc1420e9e5a",
   "projectname": "chifanshenme",
   "cloudfunctionRoot": "cloudfunctions/",
   "miniprogramRoot": "./",

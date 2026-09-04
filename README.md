@@ -38,7 +38,8 @@
 │   ├── login/              # 用户身份
 │   ├── seedHotDishes/      # 内置热门菜种子
 │   ├── randomPick/         # 随机与防重复
-│   └── lbsSearch/          # 腾讯位置服务 POI 搜索
+│   ├── lbsSearch/          # 腾讯位置服务 POI 搜索
+│   └── manageFood/         # 食单菜品/馆子删除
 ├── docs/superpowers/       # 设计文档与实现计划
 └── project.config.json     # 微信开发者工具配置
 ```
@@ -47,7 +48,7 @@
 
 1. 用微信开发者工具导入本项目根目录，在 [project.config.json](./project.config.json) 中填入你的 appid。
 2. 开通云开发，在 [app.js](./app.js) 中把 `cloudEnv` 替换成你的云环境 ID。
-3. 部署云函数：`login`、`seedHotDishes`、`randomPick`、`lbsSearch`。
+3. 部署云函数：`login`、`seedHotDishes`、`randomPick`、`lbsSearch`、`manageFood`。
 4. 在云开发控制台创建集合：`users`、`dishes`、`restaurants`、`hot_dishes`、`pick_history`。
 5. 手动触发一次 `seedHotDishes`，写入内置热门菜品。
 6. 给 `lbsSearch` 配置环境变量 `TENCENT_LBS_KEY`（腾讯位置服务控制台申请）。

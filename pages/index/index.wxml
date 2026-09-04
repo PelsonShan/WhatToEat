@@ -34,7 +34,7 @@
       </view>
     </view>
 
-    <view class="wheel-box" bindtap="startPick">
+    <view class="wheel-box {{drawing ? 'wheel-shaking' : ''}}" bindtap="startPick">
       <view class="wheel">
         <view class="wheel-center">
           <text class="wheel-label">今日卦</text>
@@ -43,7 +43,7 @@
       </view>
       <view class="wheel-pointer">▼</view>
     </view>
-    <view class="draw-hero-sub">点今日卦，抽一支今日签</view>
+    <view class="draw-hero-sub">{{drawing ? '今日卦轻摇中' : '点今日卦，抽一支今日签'}}</view>
 
     <view wx:if="{{jackpotAllowed}}" class="jackpot-entry" bindtap="startJackpot">
       <seal text="大奖" size="12" />

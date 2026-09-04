@@ -1,5 +1,7 @@
 const { showError, cacheGet, cacheSet } = require('../utils/errors.js');
 
+const MANAGE_FOOD_FN = 'manageFood';
+
 function escapeRegExp(text) {
   return String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -76,10 +78,28 @@ function updateItem(collection, id, data) {
 }
 
 function removeItem(collection, id) {
-  return wx.cloud.database().collection(collection).doc(id).remove()
+  const removeByCloud = wx.cloud.callFunction({
+    name: MANAGE_FOOD_FN,
+    data: { action: 'remove', collection, id }
+  }).then((res) => !!(res.result && res.result.ok));
+
+  const removeDirect = () => wx.cloud.database().collection(collection).doc(id).remove()
     .then(() => true)
-    .catch((err) => {
-      showError('db', err);
+    .catch(() => false);
+
+  return removeByCloud
+    .then((ok) => ok || removeDirect())
+    .then((ok) => {
+      if (ok) {
+        const list = cacheGet(collection) || [];
+        cacheSet(collection, list.filter((item) => item._id !== id));
+      } else {
+        showError('db', new Error('removeItem failed'));
+      }
+      return ok;
+    })
+    .catch(() => {
+      showError('db', new Error('removeItem failed'));
       return false;
     });
 }
